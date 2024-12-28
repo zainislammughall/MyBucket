@@ -20,4 +20,5 @@ app.listen(3000, () => {
 })
 
 
+
 //DB conn string: mongodb+srv://zainislammughall:<db_password>@mybucketcluster.ug4zu.mongodb.net/?retryWrites=true&w=majority&appName=MyBucketCluster 

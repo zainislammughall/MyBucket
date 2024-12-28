@@ -2,7 +2,7 @@ import { User } from "../model/user.js";
 import bycrypt from "bcryptjs"
 import { generateVerificationToken } from "../utils/genrateVerficationToken.js";
 import { generateJWTToken } from "../utils/generateJWTToken.js";
-import { sendVerificationEmail } from "../resend/email.js";
+import { sendVerificationEmail } from "../nodemailer/mailsender.js";
 
 export const signup = async (req, res) => {
     const{ name, email, password } = req.body;
