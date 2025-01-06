@@ -10,18 +10,28 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+export const sendVerificationEmail = async (receiver, verificationToken) => {
+  const info = await transporter.sendMail({
+    from: "themybucketproject@gmail.com", // sender address
+    to: receiver, // list of receivers
+    subject: "Register", // Subject line
+    text: "Hi new user of my bucket. this is your verification code.", // plain text body
+    html: `<b>${verificationToken} this is your verification code.</b>`, // html body
+  });
 
-export const sendVerificationEmail = async (reciver, verificationToken) => {
-   
-    const info = await transporter.sendMail({
-        from: 'themybucketproject@gmail.com', // sender address
-        to: reciver, // list of receivers
-        subject: "Register", // Subject line
-        text: "Hi new user of my bucket. this is your verification code.", // plain text body
-        html: `<b>${verificationToken}</b>`,// html body
-      });
-    
-      console.log("Message sent: %s", info.messageId);
-      // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
-    
+  console.log("Message sent: %s", info.messageId);
+  // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
+};
+
+export const sendPasswordResetEmail = async (email, resetPasswordURL) => {
+  const info = await transporter.sendMail({
+    from: "themybucketproject@gmail.com", // sender address
+    to: email, // list of receivers
+    subject: "Reset Password", // Subject line
+    text: "Hi new user of my bucket. this is your verification code.", // plain text body
+    html: `<b>click <a href="${resetPasswordURL}" >here</a> this is your reset password link.</b>`, // html body
+  });
+
+  console.log("Message sent: %s", info.messageId);
+  // Message sent: <d786aa62-4e0a-070a-47ed-0b0666549519@ethereal.email>
 };
