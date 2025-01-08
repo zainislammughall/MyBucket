@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { UserPlus, Mail, Lock, User, ArrowRight } from "lucide-react";
 import FormInput from "./FormInput";
 import { validateForm } from "../../utils/validation.js";
+import { useAuthStore } from "../store/authStore.js";
 
 function SignUpPage() {
   const [formData, setFormData] = useState({
@@ -12,18 +13,11 @@ function SignUpPage() {
   });
   const [errors, setErrors] = useState({});
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
-    if (errors[name]) {
-      setErrors((prev) => ({
-        ...prev,
-        [name]: "",
-      }));
-    }
+  const { signUp } = useAuthStore();
+
+  const handleChange = async (e) => {
+    e.preventDefault();
+    await signUp(formData.email, formData.password, formData.fullName);
   };
 
   const handleSubmit = (e) => {
@@ -106,7 +100,7 @@ function SignUpPage() {
           <p className="text-center text-sm text-gray-600 mt-4">
             Already have an account?{" "}
             <a
-              href="http://localhost:5174/signIn"
+              href="http://localhost:5173/signin"
               className="text-cyan-500 hover:text-cyan-700 font-medium"
             >
               Sign in
