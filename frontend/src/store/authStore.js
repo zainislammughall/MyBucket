@@ -6,9 +6,9 @@ export const useAuthStore = create((set) => ({
   isLoading: false,
   error: false,
   isAuthenticated: false,
-  isCheckingAuth: fasle,
+  isCheckingAuth: false,
 
-  signUp: async (email, password, name) => {
+  signup: async (email, password, name, role) => {
     set({ isLoading: true, error: null });
     try {
       const response = await fetch(`${API_URL}/signup`, {
@@ -16,19 +16,37 @@ export const useAuthStore = create((set) => ({
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ email, password, name }),
+        credentials: "include",
+        body: JSON.stringify({ email, password, name, role }),
       });
-      if (response.ok) {
-        set({ isLoading: false, error: false });
-        const data = await response.json();
-        console.log(data);
-        return true;
-      }
-      throw new Error("Request failed");
+      const data = await response.json();
+      set({ isLoading: false, isAuthenticated: true, user: data.user });
+      console.log(data.user);
     } catch (error) {
+      set({ isLoading: false, error: error.message });
       console.log(error);
-      set({ isLoading: false, error: true });
-      return false;
+
+      throw error;
+    }
+  },
+
+  verifyEmail: async (code) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await fetch(`${API_URL}/verify-email`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({ code }),
+      });
+      const data = await response.json();
+      set({ isLoading: false, isAuthenticated: true, user: data.user });
+      console.log(data.user);
+    } catch (error) {
+      set({ isLoading: false, error: error.message });
+      console.log(error);
     }
   },
 }));

@@ -3,31 +3,66 @@ import { UserPlus, Mail, Lock, User, ArrowRight } from "lucide-react";
 import FormInput from "./FormInput";
 import { validateForm } from "../../utils/validation.js";
 import { useAuthStore } from "../store/authStore.js";
+import { useNavigate } from "react-router-dom";
 
 function SignUpPage() {
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
+    role: "",
     password: "",
     confirmPassword: "",
   });
+
+  const navigate = useNavigate();
   const [errors, setErrors] = useState({});
+  const [apiError, setApiError] = useState(""); // State to handle API errors
 
-  const { signUp } = useAuthStore();
+  const { signup, isLoading } = useAuthStore();
 
-  const handleChange = async (e) => {
-    e.preventDefault();
-    await signUp(formData.email, formData.password, formData.fullName);
+  // Function to handle input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: "", // Clear the specific error field when typing
+    }));
+    setApiError(""); // Clear API error when user types
   };
 
-  const handleSubmit = (e) => {
+  // Function to handle form submission
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const newErrors = validateForm(formData);
 
-    if (Object.keys(newErrors).length === 0) {
-      console.log("Form submitted:", formData);
-    } else {
+    // Validate form data
+    const newErrors = validateForm(formData);
+    if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
+      return;
+    }
+
+    try {
+      // Call the signup API
+      await signup(
+        formData.email,
+        formData.password,
+        formData.fullName,
+        formData.role
+      );
+
+      // If successful, navigate to verify-token page
+      navigate("/verify-token");
+    } catch (err) {
+      // Handle API error explicitly
+      setApiError(
+        err.message ||
+          "An error occurred. Please check your input and try again."
+      );
+      console.error("Signup error:", err);
     }
   };
 
@@ -51,7 +86,7 @@ function SignUpPage() {
             name="fullName"
             type="text"
             value={formData.fullName}
-            onChange={handleChange}
+            onChange={handleInputChange}
             placeholder="Full Name"
             error={errors.fullName}
           />
@@ -62,9 +97,20 @@ function SignUpPage() {
             name="email"
             type="email"
             value={formData.email}
-            onChange={handleChange}
+            onChange={handleInputChange}
             placeholder="you@example.com"
             error={errors.email}
+          />
+
+          <FormInput
+            icon={Mail}
+            label="Role"
+            name="role"
+            type="text"
+            value={formData.role}
+            onChange={handleInputChange}
+            placeholder="User, Rider, Admin"
+            error={errors.role}
           />
 
           <FormInput
@@ -73,7 +119,7 @@ function SignUpPage() {
             name="password"
             type="password"
             value={formData.password}
-            onChange={handleChange}
+            onChange={handleInputChange}
             placeholder="••••••••"
             error={errors.password}
           />
@@ -84,18 +130,20 @@ function SignUpPage() {
             name="confirmPassword"
             type="password"
             value={formData.confirmPassword}
-            onChange={handleChange}
+            onChange={handleInputChange}
             placeholder="••••••••"
             error={errors.confirmPassword}
           />
 
           <button
             type="submit"
+            disabled={isLoading}
             className="w-full bg-cyan-500 text-white py-2 px-4 rounded-lg hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:ring-offset-2 transition-colors duration-200 flex items-center justify-center space-x-2"
           >
-            <span>Create Account</span>
-            <ArrowRight size={18} />
+            <span>{isLoading ? "Loading..." : "Create Account"}</span>
           </button>
+
+          {apiError && <p className="text-red-500 text-sm mt-2">{apiError}</p>}
 
           <p className="text-center text-sm text-gray-600 mt-4">
             Already have an account?{" "}
