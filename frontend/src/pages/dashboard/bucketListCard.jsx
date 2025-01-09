@@ -1,7 +1,11 @@
 import React from "react";
-import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/outline";
+import {
+  CheckCircleIcon,
+  XCircleIcon,
+  CubeIcon,
+} from "@heroicons/react/outline";
 
-const BucketList = () => {
+const BucketList = ({ setSelectedPage }) => {
   // Dummy data for bucket list
   const buckets = [
     {
@@ -28,24 +32,59 @@ const BucketList = () => {
       ownerEmail: "owner4@example.com",
       status: "Down",
     },
+    {
+      id: 5,
+      name: "SmartBucket 5",
+      ownerEmail: "owner5@example.com",
+      status: "Up",
+    },
+    {
+      id: 6,
+      name: "SmartBucket 6",
+      ownerEmail: "owner6@example.com",
+      status: "Down",
+    },
+    {
+      id: 7,
+      name: "SmartBucket 7",
+      ownerEmail: "owner7@example.com",
+      status: "Up",
+    },
+    {
+      id: 8,
+      name: "SmartBucket 8",
+      ownerEmail: "owner8@example.com",
+      status: "Down",
+    },
   ];
 
   return (
-    <div>
-      <h2 className="text-xl font-samibold mb-1">SmartBuckets</h2>
-      <div className="bg-white p-1 rounded-lg shadow">
+    <div className="bg-white p-1 rounded-lg shadow">
+      <h2 className="text-xl p-4 font-semibold mb-2">SmartBuckets</h2>
+      {/* Card with fixed height and scroll */}
+      <div className="bg-white p-2 rounded-lg shadow h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
         <ul className="divide-y divide-gray-200">
           {buckets.map((bucket) => (
-            <li key={bucket.id} className="flex items-center py-1">
+            <li
+              key={bucket.id}
+              className="flex items-center py-4 cursor-pointer hover:bg-gray-100 transition"
+              onClick={() => setSelectedPage("Bucket")}
+            >
+              {/* Bucket Icon */}
+              <CubeIcon className="w-6 h-6 text-gray-500 mr-4" />
+
+              {/* Bucket Details */}
               <div className="flex-1">
                 <h3 className="font-semibold text-gray-800">{bucket.name}</h3>
                 <p className="text-sm text-gray-600">{bucket.ownerEmail}</p>
               </div>
+
+              {/* Status Icon */}
               <div className="flex items-center">
                 {bucket.status === "Up" ? (
-                  <CheckCircleIcon className="w-4 h-4 text-green-500" />
+                  <CheckCircleIcon className="w-5 h-5 text-green-500" />
                 ) : (
-                  <XCircleIcon className="w-4 h-4 text-red-500" />
+                  <XCircleIcon className="w-5 h-5 text-red-500" />
                 )}
               </div>
             </li>

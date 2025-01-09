@@ -62,8 +62,7 @@ const Dashboard = () => {
       default:
         return (
           <div>
-            <h2 className="text-xl font-bold">Welcome</h2>
-            <p>Select an option from the sidebar to get started.</p>
+            <Home />;
           </div>
         );
     }
@@ -99,7 +98,9 @@ const Dashboard = () => {
                 >
                   <item.icon
                     className={`w-5 h-5 mr-3 ${
-                      selectedPage === item.name ? "text-[#26a370]" : "text-white"
+                      selectedPage === item.name
+                        ? "text-[#26a370]"
+                        : "text-white"
                     }`}
                   />
                   {item.name}
@@ -128,9 +129,7 @@ const Dashboard = () => {
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 p-6 overflow-auto">
-        {renderContent()}
-      </main>
+      <main className="flex-1 p-6 overflow-auto">{renderContent()}</main>
     </div>
   );
 };

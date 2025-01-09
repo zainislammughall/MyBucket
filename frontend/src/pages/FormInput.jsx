@@ -14,7 +14,7 @@ function FormInput({ icon: Icon, label, error, ...props }) {
           {...props}
           className={`block w-full pl-10 pr-3 py-2 border ${
             error ? "border-red-500" : "border-gray-300"
-          } rounded-lg focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent`}
+          } rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3fb27f] focus:border-transparent`}
         />
       </div>
       {error && <p className="mt-1 text-sm text-red-500">{error}</p>}

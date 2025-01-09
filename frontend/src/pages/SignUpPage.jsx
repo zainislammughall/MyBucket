@@ -69,8 +69,8 @@ function SignUpPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-20 to-white flex items-center justify-center p-4">
       <div className="max-w-md w-full bg-white rounded-xl shadow-xl overflow-hidden">
-        <div className="px-8 pt-8 pb-6 text-center bg-cyan-600">
-          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white text-cyan-500 mb-4">
+        <div className="px-8 pt-8 pb-6 text-center bg-[#3fb27f]">
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white text-[#3fb27f] mb-4">
             <UserPlus size={28} />
           </div>
           <h2 className="text-2xl font-bold text-white">Create Account</h2>
@@ -138,7 +138,7 @@ function SignUpPage() {
           <button
             type="submit"
             disabled={isLoading}
-            className="w-full bg-cyan-500 text-white py-2 px-4 rounded-lg hover:bg-cyan-600 focus:outline-none focus:ring-2 focus:ring-cyan-600 focus:ring-offset-2 transition-colors duration-200 flex items-center justify-center space-x-2"
+            className="w-full bg-[#3fb27f] text-white py-2 px-4 rounded-lg hover:bg-[#18835a] focus:outline-none focus:ring-2 focus:ring-[#26a370] focus:ring-offset-2 transition-colors duration-200 flex items-center justify-center space-x-2"
           >
             <span>{isLoading ? "Loading..." : "Create Account"}</span>
           </button>
@@ -149,7 +149,7 @@ function SignUpPage() {
             Already have an account?{" "}
             <a
               href="http://localhost:5173/signin"
-              className="text-cyan-500 hover:text-cyan-700 font-medium"
+              className="text-[#26a370] hover:text-[#18835a] font-medium"
             >
               Sign in
             </a>
