@@ -49,4 +49,24 @@ export const useAuthStore = create((set) => ({
       console.log(error);
     }
   },
+
+  login: async (email, password) => {
+    set({ isLoading: true, error: null });
+    try {
+      const response = await fetch(`${API_URL}/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+      set({ isLoading: false, isAuthenticated: true, user: data.user });
+    } catch (error) {
+      set({ isLoading: false, error: error.message });
+      console.log(error);
+      throw error;
+    }
+  },
 }));
