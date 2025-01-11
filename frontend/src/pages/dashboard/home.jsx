@@ -1,7 +1,9 @@
 import BucketList from "./bucketListCard";
+import AnalyticsCard from "./icons/AnalyticsCard";
 import MapCard from "./mapCard";
-import ParcelCard from "./parcelCard";
+import ParcelDashboard from "./countsCard";
 import UserList from "./userListCard";
+import CountDashboard from "./countsCard";
 
 const Home = ({ setSelectedPage }) => {
   return (
@@ -18,12 +20,21 @@ const Home = ({ setSelectedPage }) => {
           <BucketList />
         </div>
 
-        <div className="center">
-          <ParcelCard deliveredCount={36} pendingCount={12} />
+        <div>
+          <CountDashboard
+            deliveredCount={10}
+            pendingCount={5}
+            userCount={20}
+            bucketCount={15}
+          />
         </div>
 
         <div>
           <MapCard />
+        </div>
+        <div></div>
+        <div>
+          <AnalyticsCard />
         </div>
       </div>
     </div>

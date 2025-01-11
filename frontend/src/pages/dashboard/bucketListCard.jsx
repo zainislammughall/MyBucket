@@ -59,32 +59,32 @@ const BucketList = ({ setSelectedPage }) => {
   ];
 
   return (
-    <div className="bg-white p-1 rounded-lg shadow">
-      <h2 className="text-xl p-4 font-semibold mb-2">SmartBuckets</h2>
+    <div className="bg-white p-2 rounded-lg shadow h-80">
+      <h2 className="text-sm font-semibold mb-2 p-2">SmartBuckets</h2>
       {/* Card with fixed height and scroll */}
       <div className="bg-white p-2 rounded-lg shadow h-64 overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-200">
         <ul className="divide-y divide-gray-200">
           {buckets.map((bucket) => (
             <li
               key={bucket.id}
-              className="flex items-center py-4 cursor-pointer hover:bg-gray-100 transition"
+              className="flex items-center py-2 cursor-pointer hover:bg-gray-100 transition"
               onClick={() => setSelectedPage("Bucket")}
             >
               {/* Bucket Icon */}
-              <CubeIcon className="w-6 h-6 text-gray-500 mr-4" />
+              <CubeIcon className="w-5 h-5 text-gray-500 mr-3" />
 
               {/* Bucket Details */}
-              <div className="flex-1">
+              <div className="flex-1 text-xs">
                 <h3 className="font-semibold text-gray-800">{bucket.name}</h3>
-                <p className="text-sm text-gray-600">{bucket.ownerEmail}</p>
+                <p className="text-xs text-gray-600">{bucket.ownerEmail}</p>
               </div>
 
               {/* Status Icon */}
               <div className="flex items-center">
                 {bucket.status === "Up" ? (
-                  <CheckCircleIcon className="w-5 h-5 text-green-500" />
+                  <CheckCircleIcon className="w-4 h-4 text-green-500" />
                 ) : (
-                  <XCircleIcon className="w-5 h-5 text-red-500" />
+                  <XCircleIcon className="w-4 h-4 text-red-500" />
                 )}
               </div>
             </li>

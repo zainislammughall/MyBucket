@@ -7,7 +7,7 @@ const MapCard = () => {
     const initMap = () => {
       const map = new window.google.maps.Map(mapRef.current, {
         center: { lat: 31.446623, lng: 74.268173 }, // Centered in Lahore
-        zoom: 12,
+        zoom: 13,
       });
 
       // Marker data
@@ -39,7 +39,7 @@ const MapCard = () => {
             url:
               "data:image/svg+xml;charset=UTF-8," +
               encodeURIComponent(icon || cubeIcon),
-            scaledSize: new window.google.maps.Size(40, 40), // Adjusted icon size
+            scaledSize: new window.google.maps.Size(30, 30), // Adjusted icon size
           },
         });
       });
@@ -53,11 +53,11 @@ const MapCard = () => {
   }, []);
 
   return (
-    <div className="bg-white p-2 rounded-lg shadow h-[calc(750%+2rem)] w-full md:w-[calc(200%+1.5rem)]">
-      <h2 className="text-ml font-bold mb-4 ml-2 text-gray-800">Map</h2>
+    <div className="bg-white p-2 rounded-lg shadow h-[calc(95%+2rem)] w-full md:w-[calc(200%+1.5rem)]">
+      <h2 className="text-sm font-semibold mb-4 ml-2 text-gray-800">Map</h2>
       <div
         ref={mapRef}
-        className="w-full h-[calc(95%-2rem)] rounded-lg bg-gray-100"
+        className="w-full h-[calc(97%-2rem)] rounded-lg bg-gray-100"
       />
     </div>
   );

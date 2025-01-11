@@ -9,6 +9,10 @@ import {
   HomeIcon,
 } from "@heroicons/react/outline";
 import Home from "./dashboard/home";
+import UserList from "./UserList";
+import SmartBucketList from "./SmartBucketList";
+import ParcelList from "./ParcelList";
+import MapComponent from "./Maps";
 
 const Dashboard = () => {
   const [selectedPage, setSelectedPage] = useState("Welcome");
@@ -18,31 +22,15 @@ const Dashboard = () => {
       case "Home":
         return <Home />;
       case "Users":
-        return (
-          <div>
-            <h2 className="text-xl font-bold">Users</h2>
-            <p>Manage user accounts and roles.</p>
-          </div>
-        );
+        return <UserList />;
       case "SmartBuckets":
-        return (
-          <div>
-            <h2 className="text-xl font-bold">SmartBuckets</h2>
-            <p>Monitor and control SmartBuckets.</p>
-          </div>
-        );
+        return <SmartBucketList />;
       case "Parcels":
-        return (
-          <div>
-            <h2 className="text-xl font-bold">Parcels</h2>
-            <p>Track and manage parcel deliveries.</p>
-          </div>
-        );
+        return <ParcelList />;
       case "Map":
         return (
           <div>
-            <h2 className="text-xl font-bold">Map</h2>
-            <p>View and manage location-based data.</p>
+            <MapComponent />
           </div>
         );
       case "Settings":
@@ -60,11 +48,7 @@ const Dashboard = () => {
           </div>
         );
       default:
-        return (
-          <div>
-            <Home />;
-          </div>
-        );
+        return <Home />;
     }
   };
 
@@ -81,8 +65,11 @@ const Dashboard = () => {
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
       <aside className="w-64 bg-[#3fb27f] text-white flex flex-col">
-        <div className="p-6 text-center font-bold text-xl border-b border-cyan-700">
-          My Bucket Dashboard
+        <div className="inline-flex items-center justify-center p-4">
+          <CubeIcon className="w-20 h-20 justify-center text-white mr-2" />
+        </div>
+        <div className="p-2 text-center font-bold text-xl border-b border-cyan-700">
+          My Bucket<br></br> D a s h b o a r d
         </div>
         <nav className="flex-1 mt-6">
           <ul className="space-y-4">
