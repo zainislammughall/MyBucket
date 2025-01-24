@@ -9,8 +9,10 @@ HardwareSerial gpsSerial(1);  // Using Serial1 for GPS communication
 #define RXD1 14
 #define TXD1 15
 
-FirebaseConfig firebaseConfig;
+FirebaseData firebaseData;
 FirebaseAuth firebaseAuth;
+FirebaseConfig firebaseConfig;
+bool signupOK = false;
 
 // Firebase setup
 #define WIFI_SSID "King XI "
@@ -39,8 +41,7 @@ void setup() {
   Serial.println("\nConnected to Wi-Fi");
 
   // Initialize Firebase
-   Firebase.begin(FirebaseConfig, FirebaseAuth);
-  Firebase.reconnectWiFi(true);
+
   Serial.println("Firebase initialized");
 
   Serial.println("GPS Module Test Started");
