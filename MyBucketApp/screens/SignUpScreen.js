@@ -14,7 +14,7 @@ import tw from "twrnc";
 import { Icon } from "react-native-elements";
 import { BlurView } from "expo-blur";
 
-const SignupScreen = ({ navigation }) => {
+const SignupScreen = () => {
   const [role, setRole] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -136,14 +136,6 @@ const SignupScreen = ({ navigation }) => {
             <Text style={tw`text-white text-lg font-semibold`}>Sign Up</Text>
           </TouchableOpacity>
         </BlurView>
-
-        {/* Already Have an Account */}
-        <View style={tw`mt-5 flex-row`}>
-          <Text style={tw`text-gray-700`}>Already have an account? </Text>
-          <TouchableOpacity onPress={() => navigation.navigate("LoginScreen")}>
-            <Text style={tw`text-[#3fb27f] font-bold`}>Log In</Text>
-          </TouchableOpacity>
-        </View>
       </View>
     </SafeAreaView>
   );

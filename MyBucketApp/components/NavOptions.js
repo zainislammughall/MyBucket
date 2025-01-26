@@ -8,21 +8,36 @@ import { useNavigation } from "@react-navigation/native";
 const NavOptions = () => {
   const navigation = useNavigation();
 
-  return (
-    <View style={tw`flex mt-50 flex-row justify-center items-center`}>
-      <TouchableOpacity onPress={() => navigation.navigate("SignUpScreen")}>
-        <BlurView intensity={50} tint="light" style={styles.iconContainer}>
-          <UserIcon size={30} color="white" />
-          <Text style={{ padding: 5, color: "white" }}>User</Text>
-        </BlurView>
-      </TouchableOpacity>
+  // Function to navigate to SignUpScreen
+  const handleSignUpPress = () => {
+    navigation.navigate("SignUpScreen");
+  };
 
-      <TouchableOpacity>
-        <BlurView intensity={50} tint="light" style={styles.iconContainer}>
-          <TruckIcon size={30} color="white" />
-          <Text style={{ padding: 5, color: "white" }}>Rider</Text>
-        </BlurView>
-      </TouchableOpacity>
+  return (
+    <View>
+      <View style={tw`flex mt-50 flex-row justify-center items-center`}>
+        <TouchableOpacity onPress={() => navigation.navigate("LoginScreen")}>
+          <BlurView intensity={50} tint="light" style={styles.iconContainer}>
+            <UserIcon size={30} color="white" />
+            <Text style={{ padding: 5, color: "white" }}>User</Text>
+          </BlurView>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => navigation.navigate("RLoadingScreen")}>
+          <BlurView intensity={50} tint="light" style={styles.iconContainer}>
+            <TruckIcon size={30} color="white" />
+            <Text style={{ padding: 5, color: "white" }}>Rider</Text>
+          </BlurView>
+        </TouchableOpacity>
+      </View>
+      <View style={tw`mt-5 flex-row text-center justify-center`}>
+        <Text style={tw`text-gray-200 text-center`}>
+          Don't have an account?{" "}
+        </Text>
+        <TouchableOpacity onPress={handleSignUpPress}>
+          <Text style={tw`text-white font-bold`}>Sign Up</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };

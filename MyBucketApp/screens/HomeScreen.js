@@ -1,4 +1,10 @@
-import { View, Text, SafeAreaView, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  SafeAreaView,
+  StyleSheet,
+  TouchableOpacity,
+} from "react-native";
 import React from "react";
 import tw from "twrnc";
 import { CubeIcon } from "react-native-heroicons/outline";

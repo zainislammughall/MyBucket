@@ -17,6 +17,9 @@
     },
     "ios": {
       "supportsTablet": true,
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "We need access to your location to show your current location on the map."
+      },
       "config": {
         "googleMapsApiKey": "AlzaSyqwrySANnoNGyGl3Xb4tOZaxc5vcnw-hgh"
       }

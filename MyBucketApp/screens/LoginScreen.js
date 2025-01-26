@@ -53,23 +53,13 @@ const LoginScreen = ({ navigation }) => {
           </View>
 
           {/* Log In Button */}
-          <TouchableOpacity style={styles.button}>
-            <Text
-              style={tw`text-white text-lg font-semibold`}
-              onPress={navigation.navigate("LoadingScreen")}
-            >
-              Log In
-            </Text>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => navigation.navigate("LoadingScreen")}
+          >
+            <Text style={tw`text-white text-lg font-semibold`}>Log In</Text>
           </TouchableOpacity>
         </BlurView>
-
-        {/* No Account? Sign Up */}
-        <View style={tw`mt-5 flex-row`}>
-          <Text style={tw`text-gray-700`}>Don't have an account? </Text>
-          <TouchableOpacity onPress={() => navigation.navigate("SignUpScreen")}>
-            <Text style={tw`text-[#3fb27f] font-bold`}>Sign Up</Text>
-          </TouchableOpacity>
-        </View>
       </View>
     </SafeAreaView>
   );

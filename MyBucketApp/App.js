@@ -11,6 +11,11 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import LoadingScreen from "./screens/LoadingScreen";
 import DashboardScreen from "./screens/DashboardScreen";
 import CameraScreen from "./screens/CameraScreen";
+import RLoadingScreen from "./screens/Rider/RLoadingScreen";
+import MainScreen from "./screens/Rider/MainScreen";
+import OrdersList from "./components/Rider/OrderList";
+import RMap from "./components/Rider/RMap";
+import RProfile from "./components/Rider/RProfile";
 
 //setup redux
 export default function App() {
@@ -41,13 +46,39 @@ export default function App() {
               options={{ headerShown: false }}
             />
             <Stack.Screen
+              name="RLoadingScreen"
+              component={RLoadingScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
               name="DashboardScreen"
               component={DashboardScreen}
               options={{ headerShown: false }}
+              x
             />
             <Stack.Screen
               name="CameraScreen"
               component={CameraScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="MainScreen"
+              component={MainScreen}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="OrderList"
+              component={OrdersList}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="RiderMap"
+              component={RMap}
+              options={{ headerShown: false }}
+            />
+            <Stack.Screen
+              name="RiderProfile"
+              component={RProfile}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>
