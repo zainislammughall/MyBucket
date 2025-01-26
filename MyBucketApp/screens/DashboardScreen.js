@@ -5,15 +5,9 @@ import {
   View,
   SafeAreaView,
   TouchableOpacity,
-  FlatList,
 } from "react-native";
-import { CubeIcon } from "react-native-heroicons/outline";
 import tw from "twrnc";
 import { Icon } from "react-native-elements";
-import MapView, { Marker } from "react-native-maps";
-import Constants from "expo-constants";
-import { useNavigation } from "@react-navigation/native";
-import Maps from "../components/Maps";
 import Dashboard from "../components/Dashboard";
 import Notification from "../components/Notification";
 import Profile from "../components/Profile";

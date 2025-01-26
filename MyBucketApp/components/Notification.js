@@ -1,7 +1,6 @@
 import React from "react";
 import { StyleSheet, Text, View, ScrollView } from "react-native";
 import { Icon } from "react-native-elements";
-import tw from "twrnc";
 
 const NotificationScreen = () => {
   // Dummy notifications data

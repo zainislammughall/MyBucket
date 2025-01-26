@@ -10,7 +10,6 @@ import {
   Alert,
 } from "react-native";
 import { Icon } from "react-native-elements";
-import tw from "twrnc";
 
 const Profile = () => {
   const [name, setName] = useState("Zain Islam");

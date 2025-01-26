@@ -3,15 +3,10 @@ import {
   StyleSheet,
   Text,
   View,
-  SafeAreaView,
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import { CubeIcon } from "react-native-heroicons/outline";
-import tw from "twrnc";
 import { Icon } from "react-native-elements";
-import MapView, { Marker } from "react-native-maps";
-import Constants from "expo-constants";
 import { useNavigation } from "@react-navigation/native";
 import Maps from "./Maps";
 
