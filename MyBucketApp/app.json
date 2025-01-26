@@ -12,8 +12,14 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "extra": {
+      "GOOGLE_MAPS_API_KEY": "AlzaSyqwrySANnoNGyGl3Xb4tOZaxc5vcnw-hgh"
+    },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "config": {
+        "googleMapsApiKey": "AlzaSyqwrySANnoNGyGl3Xb4tOZaxc5vcnw-hgh"
+      }
     },
     "android": {
       "adaptiveIcon": {
