@@ -51,39 +51,6 @@ String encodeBase64(uint8_t *data, size_t length) {
 }
 
 String base64Image= "";
-
-void send_bmp_over_http() {
-    camera_fb_t *fb = esp_camera_fb_get();
-    if (!fb) return;
-
-    // BMP header (14 bytes) + DIB header (40 bytes)
-    uint8_t bmp_header[54] = {
-        0x42, 0x4D, // BMP Signature
-        0, 0, 0, 0, // File size (to be filled later)
-        0, 0, 0, 0, // Reserved
-        54, 0, 0, 0, // Pixel data offset
-        40, 0, 0, 0, // DIB header size
-        320, 0, 0, 0, // Width (320)
-        240, 0, 0, 0, // Height (240)
-        1, 0,         // Planes
-        8, 0,         // Bits per pixel (8-bit grayscale)
-        0, 0, 0, 0,   // Compression (none)
-        0, 0, 0, 0,   // Image size (can be 0 for uncompressed)
-        0, 0, 0, 0,   // X Pixels Per Meter
-        0, 0, 0, 0,   // Y Pixels Per Meter
-        0, 0, 0, 0,   // Total colors
-        0, 0, 0, 0    // Important colors
-    };
-
-    // Encode the BMP image as Base64
-    base64Image = base64::encode((uint8_t*)bmp_header, 54) + base64::encode(fb->buf, fb->len);
-    
-    Serial.println("Base64 Encoded BMP Image:");
-    Serial.println(base64Image);
-
-    esp_camera_fb_return(fb);
-}
-
 // Function to upload Base64 image to Firestore
 void uploadImageToFirestore() {
     // Firestore document path and content

@@ -9,6 +9,8 @@ import {
 import { Icon } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
 import Maps from "./Maps";
+import { database } from "./firebaseConfig"; // Import Firebase
+import { ref, set } from "firebase/database";
 
 const Dashboard = () => {
   const navigation = useNavigation();
@@ -19,6 +21,7 @@ const Dashboard = () => {
   const Dashboard = ({ navigation }) => {
     const [activeTab, setActiveTab] = useState("dashboard");
   };
+
   // Data array with card details
   const data = [
     {
@@ -48,9 +51,31 @@ const Dashboard = () => {
     },
   ];
 
-  // Toggle function for Card 1 lock state
-  const toggleCard1Lock = () => {
-    setIsCard1Locked(!isCard1Locked);
+  // Function to update lock state in Firebase
+  const updateLockStateInFirebase = async (newState) => {
+    try {
+      await set(ref(database, "lockState"), newState);
+      console.log("Lock state updated in Firebase:", newState);
+    } catch (error) {
+      console.error("Error updating lock state in Firebase:", error);
+    }
+  };
+
+  // Toggle function for Card 1 lock state and revert after 30 seconds
+  const toggleCard1Lock = async () => {
+    const newState = !isCard1Locked;
+    setIsCard1Locked(newState);
+
+    // Update the new state in Firebase
+    await updateLockStateInFirebase(newState);
+
+    // Revert back to the locked state after 30 seconds
+    if (!newState) {
+      setTimeout(async () => {
+        setIsCard1Locked(true); // Update local state
+        await updateLockStateInFirebase(true); // Update Firebase
+      }, 3000); // 30 seconds
+    }
   };
   // Toggle function for Card 2 power state
   const toggleCard2Power = () => {
